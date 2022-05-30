@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+    background-color: #f8f9faff;
+    ;
+}
+
+.d-block {
+    object-fit: cover;
+}
+
+#logo {
+    height: 12vh;
+}
+
+.carousel-caption {
+    bottom: 22.25rem !important;
+    font-size: 40px;
+    font-weight: bolder;
+    /* text-shadow: -0.17em 0.1em 0.1em black; */
+}
+
+.carousel-caption h5 {
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+footer {
+    min-height: 8vh;
+    background-color: #f8f9faff;
+}
+
+.imgFooter {
+    max-width: 30px;
+    max-height: 30px;
+    margin-right: 10px;
+}
+
+#logoFooter {
+    max-height: 25vh;
+}
