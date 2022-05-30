@@ -5,6 +5,17 @@
     font-family: 'Roboto', sans-serif;
 }
 
+#contacto {
+    background-image: url(/IMAGES/pexels-sebastian-coman-travel-3448793.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 2rem;
+    font-size: 1.5em;
+    color: white;
+    font-weight: bold;
+}
+
 .navbar {
     background-color: #f8f9faff;
     ;
@@ -31,8 +42,12 @@
 }
 
 footer {
-    min-height: 8vh;
-    background-color: #f8f9faff;
+    background-color: #dee2e6ff;
+}
+
+footer p {
+    font-weight: bold !important;
+    color: #212529ff !important;
 }
 
 .imgFooter {
@@ -43,4 +58,45 @@ footer {
 
 #logoFooter {
     max-height: 25vh;
+}
+
+
+/* contacto */
+
+.formulario {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.formulario fieldset {
+    padding: 0.5rem;
+}
+
+.mover-radio {
+    padding: 10rem;
+}
+
+
+/* contacto */
+
+iframe {
+    border-radius: 100px;
+}
+
+
+/* FARMACIA */
+
+.titulo {
+    text-align: center;
+}
+
+.productos {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    margin: 2rem;
 }
