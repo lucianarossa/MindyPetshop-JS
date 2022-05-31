@@ -33,7 +33,6 @@
     bottom: 22.25rem !important;
     font-size: 40px;
     font-weight: bolder;
-    /* text-shadow: -0.17em 0.1em 0.1em black; */
 }
 
 .carousel-caption h5 {
@@ -100,4 +99,8 @@ iframe {
 
 .card {
     margin: 2rem;
+}
+
+.filtro {
+    max-width: 800px;
 }

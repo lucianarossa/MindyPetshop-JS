@@ -50,37 +50,13 @@
     </header>
     <main>
         <h1 class="titulo">Farmacia</h1>
-
-        <div class="btn-group d-flex justify-content-center ms-3 me-3" role="group" aria-label="Basic checkbox toggle button group" id="checkBox">
-
+        <div class="container d-flex justify-content-center">
+            <form class="filtro d-flex" role="search" id="search">
+                <input class="form-control" type="search" placeholder="Buscar" aria-label="Search">
+            </form>
         </div>
 
-        <div class="productos d-flex" id="cartaFarmacia">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
+        <div class="productos d-flex" id="cartaFarmacia"></div>
     </main>
     <footer class="container-fluid d-flex justify-content-between p-2 align-items-center d-flex flex-column flex-md-row">
         <div>

@@ -9,111 +9,58 @@ async function getData() {
     let arrayProductos = todaLaApi.response
     console.log(arrayProductos)
 
-    // MAPEAMOS EL ARRAY PRINCIPAL Y CREAMOS UN NUEVO ARRAY CON LAS CATEGORIAS
 
-    const cat = arrayProductos.map(producto => producto.tipo);
-    console.log(cat)
-    const catSet = new Set(cat);
-    const categorias = [...catSet];
-    console.log(categorias); // VARIABLE PARA CREAR LOS CHECKBOX
+    let arrayMedicamentos = arrayProductos.filter(e => e.tipo === "Medicamento")
+    console.log(arrayMedicamentos)
 
-    //IMPRESION DE LOS CHECKBOX
+    //SEARCH
 
-    function crearCheckbox() {
-        let templateHTML = "";
-        categorias.forEach(tipo => {
-            templateHTML += ` 
-                              <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" value="${tipo}">
-                              <label class="btn btn-outline-primary" for="btncheck1">${tipo}</label>`
+    var searchText = "";
+    const searchInput = document.getElementById("search");
 
-        })
-        document.getElementById("checkBox").innerHTML = templateHTML
+    //A LA CONSTANTE QUE ALOJA EL ELEMENTO SEARCH, LE APLICO UN ESCUCHADOR DE EVENTOS TIPO "KEYUP" CON UNA FUNCION DE ALOJAR EL VALOR DEL EVENTO.
+    //LUEGO LLAMO A LA FUNCION EVENTOS FILTRADOS QUE SERA LA ENCARGADA DE MOSTRAR LAS TARJETAS CORRESPONDIENTES.
+
+    searchInput.addEventListener("keyup", (evento) => {
+        searchText = evento.target.value;
+        productosFiltrados();
+    });
+
+    function productosFiltrados() {
+        let datos = [];
+        if (searchText !== "") {
+            datos.push(...arrayMedicamentos.filter(producto => producto.nombre.toLowerCase().includes(searchText.trim().toLowerCase()) || producto.tipo.toLowerCase().includes(searchText.trim().toLowerCase())));
+        } else {
+            datos.push(...arrayMedicamentos);
+        }
+        crearCartas(datos);
     }
+    productosFiltrados();
 
-    crearCheckbox()
-
-    console.log(arrayProductos[0].tipo)
 
     //CREAR FUNCION PARA IMPRIMIR PRODUCTOS DE FARMACIA
 
-    function crearCartas() {
+    function crearCartas(array) {
         templateCartas = ""
-        arrayProductos.forEach(producto => {
-            templateCartas += `<div class="card" style="width: 18rem;">
-                                        <img src="${producto.imagen}" class="card-img-top" alt="...">
+        if (array.length !== 0) {
+            array.forEach(producto => {
+                templateCartas += `<div class="card" style="width: 18rem;">
+                                        <img src="${producto.imagen}" class="card-img-top" style="height: 254px" alt="...">
                                       <div class="card-body">
                                         <h5 class="card-title">${producto.nombre}</h5>
-                                        <p class="card-text">${producto.descripcion}</p>
-                                        <a href="#" class="btn btn-primary">Compra</a>
+                                        <p class="card-text">$ ${producto.precio}</p>
+                                        <a href="#" class="btn btn-primary">Ver mas</a>
                                       </div>
                                    </div>`
 
 
-        })
-        document.getElementById("cartaFarmacia").innerHTML = templateCartas
+            })
+            document.getElementById("cartaFarmacia").innerHTML = templateCartas
+        } else {
+            document.getElementById("cartaFarmacia").innerHTML = `<img class="container" style="width:55%" src="../IMAGES/MINDYNOENCONTRAMOS.png" />`
+        }
 
     }
-    crearCartas()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // AL ARRAY DE CATEGORIAS LE PUSHEAMOS LOS PRODUCTOS CORRESPONDIENTES A ESA CATEGORIA.
-
-    // const arrayCategorias = [];
-    // categorias.map(categoria =>
-    //     arrayCategorias.push({
-    //         tipo: categoria,
-    //         producto: arrayProductos.filter(producto => producto.tipo === categoria),
-    //     }));
-    // console.log(arrayCategorias);
-
-    // arrayTiposProductos = [];
-    // arrayCategorias.map(datos =>
-    //     arrayTiposProductos.push({
-    //             descripcion: datos.producto.map(item => item.descripcion),
-    //             imagen: datos.producto.map(item => item.imagen),
-    //             nombre: datos.producto.map(item => item.nombre),
-    //             precio: datos.producto.map(item => item.precio),
-    //             stock: datos.producto.map(item => item.stock),
-    //             tipo: datos.producto.map(item => item.tipo),
-    //             __v: datos.producto.map(item => item.__v),
-    //             _id: datos.producto.map(item => item._id),
-
-    //         }
-
-    //     )
-    // )
-    // console.log(arrayTiposProductos)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
