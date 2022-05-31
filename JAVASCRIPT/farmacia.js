@@ -46,10 +46,10 @@ async function getData() {
             array.forEach(producto => {
                 templateCartas += `<div class="card" style="width: 18rem;">
                                         <img src="${producto.imagen}" class="card-img-top" style="height: 254px" alt="...">
-                                      <div class="card-body">
+                                      <div class="card-body height: 200px">
                                         <h5 class="card-title">${producto.nombre}</h5>
                                         <p class="card-text">$ ${producto.precio}</p>
-                                        <a href="#" class="btn btn-primary">Ver mas</a>
+                                        <a href="#" class="btn btn-secondary">Ver mas</a>
                                       </div>
                                    </div>`
 

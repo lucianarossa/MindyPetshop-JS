@@ -5,6 +5,20 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.mainJuguetes {
+    background-image: url(/IMAGES/pexels-kasuma-933498.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+.mainFarmacia {
+    background-image: url(/IMAGES/pexels-anel-rossouw-2558605.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
 #contacto {
     background-image: url(/IMAGES/pexels-sebastian-coman-travel-3448793.jpg);
     background-repeat: no-repeat;
@@ -19,6 +33,11 @@
 .navbar {
     background-color: #f8f9faff;
     ;
+}
+
+.navbar-nav {
+    font-weight: bolder;
+    font-size: 20px;
 }
 
 .d-block {
@@ -41,22 +60,23 @@
 }
 
 footer {
-    background-color: #dee2e6ff;
+    background-color: #f8f9fa;
 }
 
 footer p {
     font-weight: bold !important;
     color: #212529ff !important;
+    font-size: 15px;
 }
 
 .imgFooter {
     max-width: 30px;
     max-height: 30px;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 #logoFooter {
-    max-height: 25vh;
+    max-height: 17vh;
 }
 
 
@@ -90,6 +110,9 @@ iframe {
 .titulo {
     padding: 2rem;
     text-align: center;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px;
+    font-size: 50px;
 }
 
 .productos {
@@ -99,6 +122,18 @@ iframe {
 
 .card {
     margin: 2rem;
+    box-shadow: 5px 5px 5px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card-title {
+    text-align: center;
 }
 
 .filtro {
