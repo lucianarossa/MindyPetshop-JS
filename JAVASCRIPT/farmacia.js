@@ -44,12 +44,15 @@ async function getData() {
         templateCartas = ""
         if (array.length !== 0) {
             array.forEach(producto => {
-                templateCartas += `<div class="card" style="width: 18rem;">
+                templateCartas += `<div class="card" ">
                                         <img src="${producto.imagen}" class="card-img-top" style="height: 254px" alt="...">
                                       <div class="card-body height: 200px">
                                         <h5 class="card-title">${producto.nombre}</h5>
                                         <p class="card-text">$ ${producto.precio}</p>
-                                        <a href="#" class="btn btn-secondary">Ver mas</a>
+                                        <div >
+                                        <a href="./detalle.html?id=${producto._id}" class="btn btn-secondary">Ver mas</a>
+                                        <button class="btn btn-secondary">Comprar</button>
+                                        </div>
                                       </div>
                                    </div>`
 
