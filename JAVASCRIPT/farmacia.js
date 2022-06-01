@@ -7,6 +7,7 @@ async function getData() {
     let todaLaApi = objetoPrincipal
     console.log(todaLaApi)
     let arrayProductos = todaLaApi.response
+    guardarTodosLosProductos(arrayProductos);
     console.log(arrayProductos)
 
 
@@ -33,39 +34,25 @@ async function getData() {
         } else {
             datos.push(...arrayMedicamentos);
         }
-        crearCartas(datos);
+        crearCartasFiltradas(datos);
     }
     productosFiltrados();
 
 
     //CREAR FUNCION PARA IMPRIMIR PRODUCTOS DE FARMACIA
 
-    function crearCartas(array) {
+    function crearCartasFiltradas(array) {
         templateCartas = ""
         if (array.length !== 0) {
-            array.forEach(producto => {
-                templateCartas += `<div class="card" ">
-                                        <img src="${producto.imagen}" class="card-img-top" style="height: 254px" alt="...">
-                                      <div class="card-body height: 200px">
-                                        <h5 class="card-title">${producto.nombre}</h5>
-                                        <p class="card-text">$ ${producto.precio}</p>
-                                        <div >
-                                        <a href="./detalle.html?id=${producto._id}" class="btn btn-secondary">Ver mas</a>
-                                        <button class="btn btn-secondary">Comprar</button>
-                                        </div>
-                                      </div>
-                                   </div>`
-
-
-            })
-            document.getElementById("cartaFarmacia").innerHTML = templateCartas
+            crearCartas(array, "cartaFarmacia");
+            actualizarCarrito();
         } else {
             document.getElementById("cartaFarmacia").innerHTML = `<img class="container" style="width:55%" src="../IMAGES/MINDYNOENCONTRAMOS.png" />`
         }
 
     }
 
-
-
+    crearCartas(arrayMedicamentos, "cartaFarmacia");
+    actualizarCarrito();
 }
 getData()

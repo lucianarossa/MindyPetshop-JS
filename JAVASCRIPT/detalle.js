@@ -7,10 +7,8 @@ async function getData() {
     let todaLaApi = objetoPrincipal
     console.log(todaLaApi)
     let arrayProductos = todaLaApi.response
+    guardarTodosLosProductos(arrayProductos);
     console.log(arrayProductos)
-
-
-
 
     let idCards = [];
 
@@ -49,7 +47,7 @@ async function getData() {
           <h5 class="card-title">${producto.nombre}</h5>
           <p class="card-text">${producto.descripcion}</p>
           <p class="card-text">Precio: $${producto.precio}</p>
-          <button class="btn btn-secondary comprar" onclick="getSeleccionados(${producto._id})" id="${producto.id}">Comprar</button>
+          <button class="btn btn-secondary comprar" onclick="comprar('${producto._id}')" id="${producto.id}">Comprar</button>
         </div>
       </div>
       `
@@ -58,6 +56,7 @@ async function getData() {
     }
 
     detalle()
+    actualizarCarrito();
 
 
 

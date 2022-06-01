@@ -1,61 +1,71 @@
-async function getData() {
-    await fetch("https://apipetshop.herokuapp.com/api/articulos")
-        .then(response => response.json())
-        .then(json => objetoPrincipal = json);
+function crearCartas(productos, idContenedor) {
+    let templateCartas = ""
 
-    //DECLARAMOS TODAS LAS VARIABLES NECESARIAS
+    productos.forEach(producto => {
+        templateCartas += `
+        <div class="card">
+            <img src="${producto.imagen}" class="card-img-top" style="height: 254px" alt="...">
+            <div class="card-body height: 200px">
+            <h5 class="card-title">${producto.nombre}</h5>
+            <p class="card-text">Stock: ${producto.stock}</p>
+            <div >
+            <a href="./detalle.html?id=${producto._id}" class="btn btn-secondary">Ver mas</a>
+            <button class="btn btn-secondary" onclick="comprar('${producto._id}')">Comprar</button>
+            </div>
+            </div>
+        </div>
+    `;
+    })
 
-    let todaLaApi = objetoPrincipal
-    console.log(todaLaApi)
+    document.getElementById(idContenedor).innerHTML = templateCartas
+}
 
+function obtenerSeleccionados() {
+    if (localStorage.getItem("seleccionados")) {
+        const arraySeleccionados = JSON.parse(localStorage.getItem("seleccionados"))
+        return arraySeleccionados;
+    } else {
+        return [];
+    }
+}
 
-    let arrayProductos = todaLaApi.response
-    console.log(arrayProductos)
+function guardarTodosLosProductos(productos) {
+    localStorage.setItem("productos", JSON.stringify(productos))
+}
 
+function todosLosProductos() {
+    if (localStorage.getItem("productos")) {
+        const productos = JSON.parse(localStorage.getItem("productos"))
+        return productos;
+    } else {
+        return [];
+    }
+}
+
+function productosEnElCarro() {
+    const arraySeleccionados = obtenerSeleccionados();
+    let productos = todosLosProductos().filter((p) => arraySeleccionados.includes(p._id));
+    return productos;
+}
+
+function actualizarCarrito() {
     let contenedorTienda = document.getElementById("contedorTienda")
-    let vacio = []
-    let local = [];
-    var arraySeleccionados = []
 
-    //FUNCION LOCAL STORE
-
-    function getLocalStorage() {
-        if (localStorage.getItem("seleccionados")) {
-            arraySeleccionados = JSON.parse(localStorage.getItem("seleccionados"))
-            let data = arrayProductos.filter(p => arraySeleccionados.include(p._id))
-            mostrarCarrito(data)
-        } else {
-            arraySeleccionados = []
-        }
-    }
-
-    getLocalStorage()
-
-    function getSeleccionados(id) {
-        if (localStorage.getItem("seleccionados")) {
-            if (arraySeleccionados.includes(id)) {
-                arraySeleccionados = arraySeleccionados.filter(idS => idS !== id)
-            } else {
-                arraySeleccionados.push(id)
-            }
-        } else {
-            arraySeleccionados = [id]
-        }
-        localStorage.setItem("seleccionados", JSON.stringify(arraySeleccionados))
-        getLocalStorage()
-    }
-
-    function mostrarCarrito(array) {
-        contenedorTienda.innerHTML = ""
-        array.forEach(e => {
-            contenedorTienda.innerHTML += `<div class="row">
+    contenedorTienda.innerHTML = `<div class="row">
             <div class="col-8 d-flex justify-content-center ">
                 <p>Producto</p>
             </div>
             <div class="col-4 d-flex justify-content-center  ">
                 <p>Precio</p>
             </div>
-        </div>
+        </div>`;
+
+    const array = productosEnElCarro();
+    if (array.length === 0) {
+        contenedorTienda.innerText = "Vacío";
+    } else {
+        array.forEach(e => {
+            contenedorTienda.innerHTML += `
         <div class="row">
             <div class="col-8 d-flex flex-row border border-dark" id="dataProducto">
                 <div> <img class="img-carrito"
@@ -68,33 +78,46 @@ async function getData() {
             <div class="col-4 d-flex flex-column justify-content-center align-items-center border border-dark"
                 id="precioEliminar">
                 <p>${e.precio}</p>
-                <a href=""><i class="bi bi-trash"></i>Eliminar</a>
+                <button class="btn btn-danger" onclick="borrarDelCarro('${e._id}')"><i class="bi bi-trash"></i>Eliminar</button>
             </div>
         </div>`
         });
+        contenedorTienda.innerHTML += `
+        <button class="btn btn-danger" onclick="vaciarCarro()">Vaciar</button>
+        <button class="btn btn-success" onclick="finalizarCompra()">Finalizar compra</button>
+        `
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-getData()
+
+function borrarDelCarro(id) {
+    let arraySeleccionados = obtenerSeleccionados();
+    arraySeleccionados = arraySeleccionados.filter(idS => idS !== id)
+    localStorage.setItem("seleccionados", JSON.stringify(arraySeleccionados))
+    actualizarCarrito();
+}
+
+function comprar(id) {
+    let arraySeleccionados = obtenerSeleccionados();
+    if (!arraySeleccionados.includes(id)) {
+        arraySeleccionados.push(id)
+        localStorage.setItem("seleccionados", JSON.stringify(arraySeleccionados))
+        actualizarCarrito();
+        Swal.fire(
+            'Producto Agregado'
+        )
+    }
+}
+
+function vaciarCarro() {
+    localStorage.removeItem("seleccionados");
+    actualizarCarrito();
+}
+
+function finalizarCompra() {
+    Swal.fire(
+        'Felicitaciones',
+        'Has terminado tu compra.',
+        'success'
+    )
+    vaciarCarro();
+}

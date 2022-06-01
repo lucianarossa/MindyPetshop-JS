@@ -5,9 +5,8 @@ async function getData() {
         .then(response => response.json())
         .then(json => objetoPrincipal = json);
     let todaLaApi = objetoPrincipal
-    console.log(todaLaApi)
     let arrayProductos = todaLaApi.response
-    console.log(arrayProductos)
+    guardarTodosLosProductos(arrayProductos);
 
     // MAPEAMOS EL ARRAY PRINCIPAL Y CREAMOS UN NUEVO ARRAY CON LAS CATEGORIAS
 
@@ -35,39 +34,23 @@ async function getData() {
         } else {
             datos.push(...arrayJuguetes);
         }
-        crearCartas(datos);
+        crearCartasFiltradas(datos);
     }
     productosFiltrados();
 
 
     //CREAR FUNCION PARA IMPRIMIR PRODUCTOS DE FARMACIA
 
-    function crearCartas(array) {
+    function crearCartasFiltradas(array) {
         templateCartas = ""
         if (array.length !== 0) {
-            array.forEach(producto => {
-                templateCartas += `<div class="card" >
-                                        <img src="${producto.imagen}" class="card-img-top" style="height: 254px" alt="...">
-                                      <div class="card-body height: 200px">
-                                        <h5 class="card-title">${producto.nombre}</h5>
-                                        <p class="card-text">$ ${producto.precio}</p>
-                                        <div >
-                                        <a href="./detalle.html?id=${producto._id}" class="btn btn-secondary">Ver mas</a>
-                                        <button class="btn btn-secondary">Comprar</button>
-                                        </div>
-                                      </div>
-                                   </div>`
-
-
-            })
-
-            document.getElementById("cartaJuguetes").innerHTML = templateCartas
+            crearCartas(array, "cartaJuguetes")
         } else {
             document.getElementById("cartaJuguetes").innerHTML = `<img class="container" style="width:55%" src="../IMAGES/MINDYNOENCONTRAMOS.png" />`
         }
     }
 
-
-
+    crearCartas(arrayJuguetes, "cartaJuguetes");
+    actualizarCarrito();
 }
 getData()
