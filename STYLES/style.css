@@ -10,6 +10,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    margin-top: 17vh;
 }
 
 .mainFarmacia {
@@ -17,6 +18,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
+    margin-top: 17vh;
 }
 
 #contacto {
@@ -28,16 +30,21 @@
     font-size: 1.5em;
     color: white;
     font-weight: bold;
+    margin-top: 17vh;
 }
 
 header {
-    /* background-color: #f8f9faff; */
-    background: linear-gradient(rgb(121, 120, 120), #c1c2c3);
+    background-color: rgba(0, 0, 0, 0.192);
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    width: 100%;
 }
 
 .navbar-nav {
     font-weight: bolder;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bolder;
 }
 
@@ -49,11 +56,15 @@ header {
     height: 12vh;
 }
 
+.carrito-container{
+    height: 80px;
+}
+
 .carritoImage {
     width: 80px;
-    height: 50px;
+    height: 80px;
     margin-right: 1rem;
-    background-image: url(/IMAGES/carrito.png);
+    background-image: url(/IMAGES/carrito2.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -218,45 +229,59 @@ iframe {
 /* CAROUSEL */
 
 .imgUno {
-    background-image: url("https://www.petshopposts.com/wp-content/uploads/2019/07/colores-schnauzer.jpg");
+    background-image: url("../IMAGES/dog.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 655px;
+    height: 600px;
 }
 
 .imgDos {
-    background-image: url("https://img.blogs.es/anexom/wp-content/uploads/2018/07/23815272238_77f1b41a56_k.jpg");
+    background-image: url("../IMAGES/dogs.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 655px;
+    height: 600px;
 }
 
 .imgTres {
-    background-image: url("https://mla-s2-p.mlstatic.com/D_NQ_NP_630544-MLA43364902483_092020-OO.jpg");
+    background-image: url("../IMAGES/catback.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 655px;
+    height: 600px;
 }
 
-.carousel-caption {
+.carousel-caption{
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 480px;
+}
+
+.carousel-caption h1 {
+    font-weight: bolder;
     font-size: 60px;
-    font-weight: bolder;
-    text-shadow: 5px 5px 9px black;
+    color: black;
+    font-weight: bold;
+    text-shadow: 0px 15px 20px grey;
 }
 
-.carousel-caption h5 {
-    font-weight: bolder;
-    font-size: 70px;
+.carousel-caption h2{
+    color: black;
+}
+.carousel-control-prev-icon{
+   background-color: black;
+   border-radius: 20px;
 }
 
-.ultimoP {
-    padding-top: 15rem;
-    font-size: 40px;
+.carousel-control-next-icon{
+    background-color: black;
+    border-radius: 20px;
 }
 
+.carousel-control-next-icon
 
 /*MAIN DETALLE*/
 
